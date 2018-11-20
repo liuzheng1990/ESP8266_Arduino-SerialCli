@@ -1,4 +1,4 @@
-#include "SerialCli.h"
+#include "Neutrino.h"
 
 
 
@@ -8,12 +8,12 @@
 // Public functions
 
 //////////////////////////////////////////////////////////////
-SerialCli::SerialCli(bool ah)
+Neutrino::Neutrino(bool ah)
 {
 	this->auto_help = ah;
 }
 
-uint8_t SerialCli::print_help_info()
+uint8_t Neutrino::print_help_info()
 {
 	uint8_t idx;
 	Serial.println("Please begin by keying in one of the following commands:\n");
@@ -28,7 +28,7 @@ uint8_t SerialCli::print_help_info()
 
 }
 
-bool SerialCli::add_command(String command, uint8_t (*func)())
+bool Neutrino::add_command(String command, uint8_t (*func)())
 {
 	int i = this->_search_command(command);
 	if (i>=0 || this->number_commands == MAX_COMMANDS) // names taken or two much commands
@@ -41,7 +41,7 @@ bool SerialCli::add_command(String command, uint8_t (*func)())
 
 }
 
-uint8_t SerialCli::parse_command(String command)
+uint8_t Neutrino::parse_command(String command)
 {
 	command.trim();
 
@@ -72,7 +72,7 @@ uint8_t SerialCli::parse_command(String command)
 
 //////////////////////////////////////////////////////////////
 
-int SerialCli::_search_command(String command)
+int Neutrino::_search_command(String command)
 {
 	// For now, let's use sequential search
 	for (int i=0; i<this->number_commands; i++)
