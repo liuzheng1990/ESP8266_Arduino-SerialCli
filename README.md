@@ -4,17 +4,18 @@ Well, it's not really an operating system, strictly speaking. It's even oversimp
 
 Seriously, that's all this library is about. When I use this library myself, however, I felt it very handy because I can run different tasks without constantly burning codes of each task into the flash again and again. For example, I can register a "save_ir_codes" command to store some newly-recorded ir codes for my TV, and use a "send_ir_instruction" command to control the TV. (Previously, I had to burn the "save_ir_codes" sketch to Arduino, record and store the IR codes, and then burn the "send_ir_instruction" sketch to Arduino to control the TV. When I need another button's code, I burned "save_ir_codes" again to save, and "send_ir_instruction" again to send...)
 
-What's more, it has triggered my imagination because I can treat each task as a building block, and build various complicated tools from serial. If you have played Minecraft&copy; you know what I mean.
+What's more, it has triggered my imagination because I can treat each task as a building block, and build various complicated tools from serial. If you have played **Minecraft**&copy;, you know what I mean.
 
 ## What can you do with Neutrino?
 
-It all depends on what command functions you register to it! Here are some examples I can think of, and please give me your feedback and tell me more!
+It all depends on what command functions you register to it! Here are some examples I can think of, and I will implement some myself in a directory called "building_blocks". Please give me your feedback and tell me more!
 
 ### Your own "DOS system"
 
-If your Arduino has an SD card connection or a filesystem (I'm using an ESP8266, which comes with a SPIFFS filesystem), you can build your own "DOS system" by adding some functions navigating directories, reading and writing files, etc. Here are some commands you may want to implement:
+If your Arduino has an SD card connection or a filesystem (I'm using an ESP8266, which comes with an SPIFFS filesystem), you can build your own "DOS system" by adding some functions navigating directories, reading and writing files, etc. Here are some commands you may want to implement:
 
-1. **pwd** Print your current directory. (For flat filesystem, one can mimic directory by carefully designing the filename. For example, you can't create a real folder called "home" and store a file "hello.txt" in it, but you can create a file called "home/hello.txt". 
+1. **pwd** Print your current directory. (For flat filesystem, one can mimic directory by carefully designing the filename. For example, you can't create a real folder called "home" and store a file "hello.txt" in it, but you can create a file called "home/hello.txt". )
+2. **ls** (or **dir**) List files in the working directory.
 2. **cd** Change directory.
 3. **cat** Print all content of a file to the serial monitor.
 4. **write** Write data to a file.
@@ -41,7 +42,7 @@ For now, please download/clone the repo resource and save it into your library f
 
 ## How to use Neutrino
 
-Using Neutrino is simple. Here is a chunk of sample code. The step-by-step explanations are below the codes.
+Using Neutrino is simple. Here is a chunk of sample codes. The step-by-step explanations are below the codes.
 ```
 #include <Neutrino.h> // you can either enter this line or 
                       // click "Neutrino" in "Sketch->Include Library->Neutrino".
@@ -92,13 +93,13 @@ void loop()
   // You can do something depending on the return value, or simply ignore.
 }
 ```
-Here are the steps.
+Step-by-step explanations:
 
 1. Include the library. See the last section.
 2. Define a global "Neutrino" object. `Neutrino neu = Neutrino();`
 3. Define your task functions. Each function should take no arguments and return an `uint8_t` number to indicate an exit status. If you are not using the returned number, simply `return 0;`.
 4. In the `setup` function, call the `add_command` to register each task function to a command name. You can choose any command name you like. The second arument of `add_command` is the function name you want to bind to the command name.
-5. After you initialized the `Serial` (i.e., after you called `Serial.begin(<some_baudrate>);`) you can call `neu.print_help_info();` to print an automatically generated help message, listing all commands you have registered. You may notice the `_help` command. You didn't register it. The library registered it so that when you want to see this help message later on, you can just send `_help` command in the Serial monitor to review what are available commands.
+5. After you initialize the `Serial` (i.e., after you call `Serial.begin(<some_baudrate>);`) you can call `neu.print_help_info();` to print an automatically generated help message, listing all commands you have registered. You may notice the `_help` command. You didn't register this command. The library registered it so that when you want to see this help message later on, you can just send `_help` command in the Serial monitor to review what are available commands. (If you want to define your own customized help command, please use `help` instead of `_help`.
 6. Anywhere in your codes, when you receive the command name from Serial, you can pass it to the `neu.parse_command` method. This method will check whether the command name is properly registered, and run it if it is. It will return the same number returned by the task function, so if you like, you can store the return value into a `uint8_t` variable and do whatever you like with it.
 
 That's it! Define a Neutrino object -> define your task function -> register your task (add_command) -> call it by `parse_command`.
