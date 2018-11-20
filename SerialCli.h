@@ -1,12 +1,12 @@
-#ifndef SERIALCLI_H
-#define SERIALCLI_H
+#ifndef NEUTRINO_H
+#define NEUTRINO_H
 
 
 #include <Arduino.h>
 #define MAX_COMMANDS 10
 
 
-class SerialCli
+class Neutrino
 {
 
 private:
@@ -18,7 +18,7 @@ private:
 	int _search_command(String command);
 
 public:
-	SerialCli(bool add_help=false);
+	Neutrino(bool add_help=false);
 	uint8_t print_help_info();
 	bool add_command(String command, uint8_t (*func)());
 	uint8_t parse_command(String command);
@@ -27,4 +27,4 @@ public:
 
 
 
-#endif // SERIALCLI_H
+#endif // NEUTRINO_H
