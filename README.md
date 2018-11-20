@@ -116,7 +116,7 @@ Here are some new features I plan to add.
 
 2. For now, the task functions take no argument. All input has to be passed to the function either through global variables or through serial input within the task. I'll think about adding a simple argument parsing mechanism so that when users enter the command name in the Serial, they can also pass arguments. The arg parser then parses them and pass them to the task functions when calling them. 
 
-I don't intend to make Neutrino a full-featured operating system like `RTOS`, or a run-time interpretator like `MicroPython`. They are already very powerful and reliable tools to use. This library will alway be a simple playground for beginners to gain some hands-on intuition about task control. However, if you have a more ambitious goal and would like to use Neutrino as a stepping stone to build it, you are very welcome to fork it, and do any modification you like!
+I don't intend to make Neutrino a full-featured operating system like `RTOS`, or a run-time interpretator like `MicroPython`. They are already very powerful and reliable tools to use. This library will always be a simple playground for beginners to gain some hands-on intuition about task control. However, if you have a more ambitious goal and would like to use Neutrino as a stepping stone to build it, you are very welcome to fork it, and do any modification you like!
 
 Happy coding!
 
