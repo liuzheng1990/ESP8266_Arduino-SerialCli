@@ -4,6 +4,8 @@ Well, it's not really an operating system, strictly speaking. It's even oversimp
 
 Seriously, that's all this library is about. When I use this library myself, however, I felt it very handy because I can run different tasks without constantly burning codes of each task into the flash again and again. For example, I can register a "save_ir_codes" command to store some newly-recorded ir codes for my TV, and use a "send_ir_instruction" command to control the TV. (Previously, I had to burn the "save_ir_codes" sketch to Arduino, record and store the IR codes, and then burn the "send_ir_instruction" sketch to Arduino to control the TV. When I need another button's code, I burned "save_ir_codes" again to save, and "send_ir_instruction" again to send...)
 
+What's more, it has triggered my imagination because I can treat each task as a building block, and build various complicated tools from serial. If you have played Minecraft&copy; you know what I mean.
+
 ## What can you do with Neutrino?
 
 It all depends on what command functions you register to it! Here are some examples I can think of, and please give me your feedback and tell me more!
