@@ -108,7 +108,7 @@ That's it! Define a Neutrino object -> define your task function -> register you
 
 I myself is an Arduino beginner. If you are also new to Arduino and find this library interesting, I encourage you to modify the lirary codes and play with it. I'd be very glad to know your own journey to use, modify and improve it!
 
-## Next step for me
+## More to come
 
 Here are some new features I plan to add.
 
