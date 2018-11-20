@@ -33,12 +33,12 @@ You have a sketch which blinks an LED, a sketch which controls a servo, and a sk
 
 ## Install the Neutrino library
 
-For now, please download/clone the repo resource and save it into your library folder.
-
-1. Download/git clone the repo (on the main page of the repo, click "clone/download" button and download the zip file. Unzip it to a folder called "Neutrino".
-2. Save the entire "Neutrino" folder to `<your home directory>/Arduino/libraries/`.
-3. Restart the Arduino IDE. In the menu bar, click "Sketch -> Include Library", you'll see the list of all installed libraries, where "Neutrino" should be among them. Click it to include this library to your sketch.
-4. To view and try the examples, in the menu bar, click "File -> Examples" and you should see "Neutrino" there.
+1. Download the library: https://github.com/liuzheng1990/Neutrino/archive/master.zip
+2. (In the Arduino IDE) Sketch -> Include Library -> Add .ZIP Library...
+3. Select the downloaded file.
+4. Click "Open".
+5. In the menu bar, click "Sketch -> Include Library", you'll see the list of all installed libraries, where "Neutrino" should be among them. Click it to include this library to your sketch.
+6. To view and try the examples, in the menu bar, click "File -> Examples" and you should see "Neutrino" there.
 
 ## How to use Neutrino
 
