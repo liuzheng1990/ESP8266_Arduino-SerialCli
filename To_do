@@ -1,7 +1,7 @@
 ## About the sytem structure. (Let's keep Neutrino single task)
 
 i. Every task should have an "init" function (optional) and a task function. Define a global environment. Define e.g. stdout, stderr,
-and a standard library <nstdio.h>. Define some helper commands to fonfigure them. (commandline configuration for now)
+and a standard library <neutrino_api/nstdio.h>. Define some helper commands to fonfigure them. (commandline configuration for now)
 
 ii. Write the basic layer of argument parser. (uint8_t argc, String argv[]). Function can optionally take args in this way.
 In the "parse_command" function, dispatch arguments to them.
@@ -11,3 +11,10 @@ In the "parse_command" function, dispatch arguments to them.
 uint8_t add_command(string *command, uint8_t (*task_func)(uint8_t *, String *)); // arg taking commands
 uint8_t add_command(string *command, uint8_t (*task_func)()); // no arg commands
 
+iii. Put system calls, environment variabls, etc., into "neutrino_api" directory. "Neutrino.h" should be in that directory, and
+the <Neutrino.h> header file every application includes should only be a dummy file, which itself does the include from the real
+header file. The real "Neutrino.h" should create a global instance call "neutrino" in the end of the header file, like how 
+HardwareSerial.h created Serial object.
+
+iv. create another dir called "building_blocks", defining several scripts which server as building-block commands. (Implement 
+fundamental comamnds about the system.) We then have system calls and basic utilities!
