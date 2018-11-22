@@ -1,0 +1,13 @@
+## About the sytem structure. (Let's keep Neutrino single task)
+
+i. Every task should have an "init" function (optional) and a task function. Define a global environment. Define e.g. stdout, stderr,
+and a standard library <nstdio.h>. Define some helper commands to fonfigure them. (commandline configuration for now)
+
+ii. Write the basic layer of argument parser. (uint8_t argc, String argv[]). Function can optionally take args in this way.
+In the "parse_command" function, dispatch arguments to them.
+
+**tread argumented task funcs and no-arg task funcs separately.**
+
+uint8_t add_command(string *command, uint8_t (*task_func)(uint8_t *, String *)); // arg taking commands
+uint8_t add_command(string *command, uint8_t (*task_func)()); // no arg commands
+
