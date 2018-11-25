@@ -6,6 +6,18 @@ Seriously, that's all this library is about. When I use this library myself, how
 
 What's more, it has triggered my imagination because I can treat each task as a building block, and build various complicated tools from serial. If you have played **Minecraft**&copy;, you know what I mean.
 
+## Orientation
+
+Here are images showing Neutrino in action. See below ("**how to use Neutrino**") for the corresponding codes.
+
+The first image below is when Arduino restarted. The `neu.init_commands` initialized all commands (who has an `init` function) and printed the help infomation. The user then issued the "hello" command.
+
+![init_commands when restarted (see "init_greet" function below)](https://liutheprogrammer.files.wordpress.com/2018/11/neutrino_hello.png)
+
+In the second image below, the user firstly issued `_help` command, which caused the help info to be printed. Next the user entered "led on". This called the "led" command with arguments. Consequently, the "led" function was called with `argc=2, argv=["led", "on"]`. Then the user entered "led off". Check the `led` function below to see how the arguments are handled.
+
+![user entered "led on" and "led off". See the `led` function below](https://liutheprogrammer.files.wordpress.com/2018/11/neutrino_led.png)
+
 ## What can you do with Neutrino?
 
 It all depends on what command functions you register to it! Here are some examples I can think of, and I will implement some myself in a directory called "building_blocks". Please give me your feedback and tell me more!
@@ -70,9 +82,11 @@ uint8_t led(int argc, String argv[]) // another sample task, with arguments
   if (argc > 1) // check at least one argument(first arg is always command name)
   {
     if (argv[1] == "on")
-  	digitalWrite(PIN_LED, LOW);
+  	  digitalWrite(PIN_LED, LOW);
+      Serial.println("LED is on!");
     else
-        digitalWrite(PIN_LED, HIGH);
+      digitalWrite(PIN_LED, HIGH);
+      Serial.println("LED is off!");
     return 0;
   }
   else
