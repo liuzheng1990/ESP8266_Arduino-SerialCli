@@ -47,22 +47,36 @@ Using Neutrino is simple. Here is a chunk of sample codes. The step-by-step expl
 #include <Neutrino.h> // you can either enter this line or 
                       // click "Neutrino" in "Sketch->Include Library->Neutrino".
               
-// other libraries you may use
+// include other libraries you may use
 
 #define PIN_LED 4
 
-Neutrino neu = Neutrino(); // create a global object
+Neutrino neu = Neutrino(true); // create a global object, "true" to auto add "_help" command
 
-uint8_t greet() // a sample task function. No argument, and return uint8_t.
+uint8_t greet() // a sample task function with no argument, and return uint8_t.
 {
   Serial.println("Just to say hello!");
   return 0; // return 0 to indicate successful exit.
 }
 
-uint8_t led_on() // another sample task
+uint8_t init_greet() // a task can optionally have a "init" function. 
 {
-  digitalWrite(PIN_LED, LOW);
+  Serial.println("For this task, nothing to init...");
   return 0;
+}
+
+uint8_t led(int argc, String argv[]) // another sample task, with arguments
+{
+  if (argc > 1) // check at least one argument(first arg is always command name)
+  {
+    if (argv[1] == "on")
+  	digitalWrite(PIN_LED, LOW);
+    else
+        digitalWrite(PIN_LED, HIGH);
+    return 0;
+  }
+  else
+    return 1; non-zero return value => returned with error
 }
 
 // ... More sample tasks
@@ -73,9 +87,9 @@ void setup()
   pinMode(PIN_LED, OUTPUT); //some setup you need
   
   neu.add_command("greet", greet); // register a command.
-  neu.add_command("led_on", led_on); // 1st arg: command name, 2nd arg: function name binding to the command
+  neu.add_command("led", led); // 1st arg: command name, 2nd arg: function name binding to the command
   // ... add more commands
-  
+  bool i = neu.init_commands(); // run init functions of all tasks
   neu.print_help_info(); // print an auto generated help info
                          // note the "_help" command auto registered.
   
